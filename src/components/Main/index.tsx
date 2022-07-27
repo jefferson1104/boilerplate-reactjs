@@ -8,7 +8,10 @@ function Main() {
         <img src={reactLogo} className="logo react" alt="React logo" />
       </div>
       <h1>Boilerplate ReactJS</h1>
-      <small>ViteJS - ReactJS - TypeScript - Styled-Components - Jest - ESLint - Prettier - Husky</small>      
+      <small>
+        ViteJS - ReactJS - TypeScript - Styled-Components - Jest - ESLint -
+        Prettier - Husky
+      </small>
     </div>
   )
 }

@@ -2,7 +2,7 @@
 Create your reactjs + typescript project using vite.
 
 ```bash
-# Create project 
+# Create project
 $ npm create vite PROJECT_NAME
 
 # Select a framework
@@ -13,7 +13,7 @@ react-ts
 ```
 
 ## JEST + REACT-TESTING-LIBRARY
-Siga as instruções para baixar os pacotes necessários:
+Follow the instructions to download the necessary packages:
 
 ```bash
 # Install dependencies of the jest
@@ -23,7 +23,7 @@ $ npm install -D jest @types/jest ts-node ts-jest jest-environment-jsdom jest-tr
 $ npm install -D @testing-library/react @testing-library/user-event @testing-library/jest-dom
 ```
 
-Criar o arquivo **jest.config.ts** na raiz do seu projeto, com o conteudo igual ao exemplo abaixo:
+Create the **jest.config.ts** file at the root of your project, with the same content as the example below:
 
 ```typescript
 export default {
@@ -38,8 +38,168 @@ export default {
 }
 ```
 
-Criar o arquivo **jest.setup.ts** na raiz do seu projeto, com o conteudo igual ao exemplo abaixo:
+Create the **jest.setup.ts** file at the root of your project, with the same content as the example below:
 
 ```typescript
 import '@testing-library/jest-dom/extend-expect'
 ```
+
+## EDITOR CONFIG
+Let's configure the defaults of our project, for that, let's start by creating a file called **.editorconfig** in the project root, with the same content in the example below:
+
+```bash
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+```
+
+## ESLINT
+Now let's start installing ESLint, follow the instructions:
+```bash
+# Install ESLint
+$ npm install -D eslint
+
+# Initialize ESLint in the project
+$ npx eslint --init
+```
+
+After initializing ESLint, answer the questions with the example below:
+```bash
+# How would you like to use ESLint?
+To check syntax, find problems, and enforce code style
+
+# What type of modules does your project use?
+JavaScript modules (import/export)
+
+# Which framework does your project use?
+React
+
+# Does your project use TypeScript?
+yes
+
+# Where does your code run?
+Browser
+
+# How would you like to define a style for your project?
+Answer questions about your style
+
+# What format do you want your config file to be in?
+JSON
+
+# What style of indentation do you use?
+tab
+
+# What quotes do you use for strings?
+double
+
+# What line endings do you use?
+unix
+
+# Do you require semicolons?
+Yes
+
+# eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest
+# Would you like to install them now?
+yes
+
+# Which package manager do you want to use?
+npm
+```
+
+Now Install react-hooks plugin, using command bellow:
+`npm install -D eslint-plugin-react-hooks`
+
+configure ".eslintrc.json" file with the example below:
+```json
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+  }
+}
+```
+
+## PRETTIER
+To instal prettier in the project run command bellow:
+`npm install --save-dev --save-exact prettier`
+
+create the .prettierrc file in the project root directory, with the content as in the example below:
+```json
+{
+  "trailingComma": "none",
+  "semi": false,
+  "singleQuote": true
+}
+```
+
+Now we are going to integrate prettier with eslint in the project, for that we are going to install the dependencies below:
+```bash
+# Install "prettier" plugin to the eslint
+$ npm install -D eslint-plugin-prettier
+
+# Install "prettier" config to the eslint
+$ npm install -D eslint-config-prettier
+```
+
+In your ESLint configuration file, right in the "*extends*" section, add the plugin (**"plugin:prettier/recommended",**) as shown in the example below:
+```JSON
+{
+
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+
+}
+```
+
+Finally, let's create a folder called **".vscode"** in the root of the project and inside it create a file called **"settings.json"**, inside this file place the content as in the example below:
+```JSON
+{
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave" : {
+    "source.fixAll.eslint" : true,
+  }
+}
+```
+

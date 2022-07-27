@@ -203,3 +203,14 @@ Finally, let's create a folder called **".vscode"** in the root of the project a
 }
 ```
 
+## HUSKY AND LINT-STAGED (GIT HOOK)
+```bash
+# Install husky
+$ npm install -D husky
+
+# Initialize husky in the project
+$ npx husky-init
+
+# Install lint-staged
+$ npm install -D lint-staged
+```

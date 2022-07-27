@@ -8,12 +8,19 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "jest",
+    "test:watch": "npx jest --watch -o",
     "lint": "eslint src --max-warnings=0",
     "prepare": "husky install"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "src/**/*": [
-      "npm run lint --fix"
+      "npm run lint --fix",
+      "npm run test --bail"
     ]
   },
   "dependencies": {

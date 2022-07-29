@@ -3,7 +3,16 @@ export default {
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/node_modules'],
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.ts(x)'],
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx,ts,tsx}',
+    '!<rootDir>/node_modules/',
+    '!<rootDir>/src/App.tsx',
+    '!<rootDir>/src/main.tsx',
+    '!<rootDir>/src/styled.d.ts',
+    '!<rootDir>/src/vite-env.d.ts',
+    '!<rootDir>/**/stories.{js,jsx,ts,tsx}',
+    '!<rootDir>/src/styles/**/*.{js,jsx,ts,tsx}'
+  ],
   watchPathIgnorePatterns: ['<rootDir>/node_modules/'],
   coveragePathIgnorePatterns: ['<rootDir>/node_modules/'],
   modulePathIgnorePatterns: ['<rootDir>/coverage/'],

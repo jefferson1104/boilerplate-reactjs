@@ -27,14 +27,23 @@ Create the **jest.config.ts** file at the root of your project, with the same co
 
 ```typescript
 export default {
-  testEnvironment: "jsdom",
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
+  testPathIgnorePatterns: ['/node_modules'],
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.ts(x)'],
+  watchPathIgnorePatterns: ['<rootDir>/node_modules/'],
+  coveragePathIgnorePatterns: ['<rootDir>/node_modules/'],
+  modulePathIgnorePatterns: ['<rootDir>/coverage/'],
+  modulePaths: ['<rootDir>/src/'],
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    '^.+\\.tsx?$': 'ts-jest'
   },
   moduleNameMapper: {
-    ".+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+    '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$':
+      'jest-transform-stub'
   },
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts']
 }
 ```
 
@@ -42,6 +51,13 @@ Create the **jest.setup.ts** file at the root of your project, with the same con
 
 ```typescript
 import '@testing-library/jest-dom/extend-expect'
+```
+
+Finally, go to your **package.json** file and in the scripts section insert the lines below:
+
+```json
+  "test": "jest",
+  "test:watch": "npx jest --watch -o",
 ```
 
 ## EDITOR CONFIG
@@ -157,6 +173,12 @@ configure ".eslintrc.json" file with the example below:
 }
 ```
 
+Finally, go to your **package.json** file and in the scripts section insert the lines below:
+
+```json
+  "lint": "eslint src --max-warnings=0",
+```
+
 ## PRETTIER
 To instal prettier in the project run command bellow:
 `npm install --save-dev --save-exact prettier`
@@ -214,3 +236,35 @@ $ npx husky-init
 # Install lint-staged
 $ npm install -D lint-staged
 ```
+
+Look for the **./husky/pre-commit** file and make a change by replacing the `npm test` line with `npx --no-install lint-staged`
+
+And let's make a small change in **package.json**, just below the closing of the *scripts* session, let's add the content below:
+
+```json
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*": [
+      "npm run lint --fix",
+      "npm run test --findRelatedTests --bail"
+    ]
+  },
+```
+
+## STYLED COMPONENTS
+```bash
+# Install styled-components
+$ npm install styled-components
+
+# Install dev dependencies @types
+$ npm install -D @types/styled-components
+
+# Install dev dependencies to jest styled components
+$ npm install -D jest-styled-components
+```
+
+Add the `import 'jest-styled-components'` line to your **jest.setup.ts** file

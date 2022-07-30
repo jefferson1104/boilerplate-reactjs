@@ -268,3 +268,46 @@ $ npm install -D jest-styled-components
 ```
 
 Add the `import 'jest-styled-components'` line to your **jest.setup.ts** file
+
+## STORYBOOK
+```bash
+# Install storybook
+$ npx storybook init
+
+# Do you want to run the 'eslintPlugin' migration on your project?
+No
+
+# Install dependencie preset-typescript
+$ npm install -D @storybook/preset-typescript
+```
+
+Now in **.storybook/main.js** look for the session *"stories"* and enter the content below:
+```json
+"../src/**/stories.@(js|jsx|ts|tsx)"
+```
+
+Also change the name of the **main.js** file to **/main.cjs**
+
+Finally, still in the **.storybook** directory, change the name of the **preview.js** file to **preview.jsx**, and let's create decorators, leave the file as in the example below:
+
+```javascript
+import { MyThemeProvider } from '../src/styles/myThemeProvider';
+
+export const parameters = {
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
+};
+
+export const decorators = [
+  (Story) => (
+    <MyThemeProvider>
+      <Story />
+    </MyThemeProvider>
+  ),
+];
+```

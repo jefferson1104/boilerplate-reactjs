@@ -10,7 +10,7 @@ export default {
     '!<rootDir>/src/main.tsx',
     '!<rootDir>/src/styled.d.ts',
     '!<rootDir>/src/vite-env.d.ts',
-    '!<rootDir>/**/stories.{js,jsx,ts,tsx}',
+    '!<rootDir>/src/utils/**/*.{js,jsx,ts,tsx}',
     '!<rootDir>/src/styles/**/*.{js,jsx,ts,tsx}'
   ],
   watchPathIgnorePatterns: ['<rootDir>/node_modules/'],

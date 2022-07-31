@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import { renderTheme } from '../../utils/renderTheme'
 
-import Main from '../Main'
+import { Main } from '../Main'
 
 describe('Main Component', () => {
   it('should render correctly', () => {

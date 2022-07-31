@@ -1,7 +1,7 @@
 import * as Styled from './styles'
 import reactLogo from '../../assets/react.svg'
 
-function Main() {
+export const Main = () => {
   return (
     <Styled.Wrapper>
       <Styled.Header>
@@ -30,5 +30,3 @@ function Main() {
     </Styled.Wrapper>
   )
 }
-
-export default Main

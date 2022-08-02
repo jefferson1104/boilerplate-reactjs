@@ -25,7 +25,5 @@ export default {
       'jest-transform-stub'
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  // passWithNoTests: true,
-  // moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   testMatch: ['<rootDir>/src/**/test.(ts|tsx)']
 }

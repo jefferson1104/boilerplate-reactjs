@@ -13,8 +13,8 @@ export const Main = () => {
         <h1>Boilerplate ReactJS</h1>
 
         <p>
-          ViteJS - ReactJS - TypeScript - Styled Components - Jest - Storybook -
-          ESLint - Prettier - Husky
+          ViteJS - ReactJS - TypeScript - Styled Components - Jest - ESLint -
+          Prettier - Husky
         </p>
       </Styled.Content>
 
